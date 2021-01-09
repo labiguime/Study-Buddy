@@ -1,0 +1,15 @@
+{
+  "name": "server-side",
+  "version": "1.0.0",
+  "description": "Server for Study-Buddy\u001b[D\u001b[D\u001b[D\u001b[D\u001b[",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/labiguime/Study-Buddy"
+  },
+  "author": "Eric, James, Leo and Rafid",
+  "license": "ISC"
+}
