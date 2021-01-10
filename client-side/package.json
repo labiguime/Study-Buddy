@@ -14,7 +14,7 @@
     "react-player": "^2.7.2",
     "react-scripts": "4.0.1",
     "react-sketch2": "^0.5.7",
-    "socket.io-client": "2.3.0",
+    "socket.io-client": "^2.3.0",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

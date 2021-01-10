@@ -8,9 +8,8 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrowOutlined';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography'
-import TextField from '@material-ui/core/TextField'
-import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles(theme => ({    
     root: {
@@ -23,6 +22,13 @@ const useStyles = makeStyles(theme => ({
         marginBottom: '8px',
         display: 'flex',
         width: '600px',
+        height: '40px',
+        borderRadius: '32px'
+    },
+    paperMini: {
+        padding: '2px 4px',
+        display: 'flex',
+        width: '100px',
         height: '40px',
         borderRadius: '32px'
     },
@@ -91,7 +97,6 @@ const useStyles = makeStyles(theme => ({
         "font-size" : "1rem",
         "font-family" : "Cairo, sans-serif",
         "letter-spacing" : "2px",
-        "text-transform" : "uppercase",
         "text-decoration": "none",
         opacity : "1.0",
         "&:hover": {
@@ -131,7 +136,11 @@ const Navbar = () => {
                         <List className={classes.container}>                      
                             
                             <ListItem>
-                                <li><a className={classes.navBtns}>Share</a></li>
+                                <li>
+                                    <Paper className={classes.paperMini}>
+                                    <a className={classes.navBtns}>Share</a>
+                                    </Paper>
+                                </li>
                             </ListItem>
                             <ListItem >
                                 <li><a className={classes.navBtns}>Join</a></li>

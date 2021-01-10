@@ -19,7 +19,7 @@ function App() {
       <Navbar/>
       <header className="space-top content"> 
       <Grid container className='margin-top '>
-          <Grid item xs={7}>
+          <Grid item xs={8}>
             <Player />
           </Grid>
           <Grid item xs={4}>
