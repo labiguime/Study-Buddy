@@ -5,7 +5,11 @@ const io = require('socket.io')(server);
 // We setup socket.io
 require('./routes/socket')(io);
 
+app.get('/', (req, res) => {
+	return res.send("You have landed on the server's main page.");
+});
+
 // We setup express
-server.listen(3000, () => {
-	console.log('The server is up and running on port 3000!');
+server.listen(5000, () => {
+	console.log('The server is up and running on port 5000!');
 });
