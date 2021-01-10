@@ -10,6 +10,7 @@ import ListItem from '@material-ui/core/ListItem';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import MWLogo from '../../assets/StudyBuddy.png';
 
 const useStyles = makeStyles(theme => ({    
     root: {
@@ -124,7 +125,7 @@ const Navbar = ({setURL}) => {
                 <Grid container>
                     <Grid item>
                     <div className={classes.title}>
-                            <Typography  className={classes.name} variant="h5">Study</Typography>
+                        <img src={MWLogo} alt="Logo" />
                     </div>
                     </Grid>
                     <Grid className={classes.videoURLGrid} item>
