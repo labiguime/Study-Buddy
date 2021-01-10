@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import clsx from 'clsx';
 import {makeStyles} from '@material-ui/core/styles';
 import AceEditor from 'react-ace';
+import Button from '@material-ui/core/Button';
 import SplitPane, {Pane} from 'react-split-pane';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
@@ -46,87 +47,149 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 const IDE = () => {
-    const classes = useStyles();
+    // const classes = useStyles();
+    // const [lang, setLang] = useState("javascript");    
+    // const [theme, setTheme] = useState("xcode");    
+    // const [defaultCode, setDefaultCode] = useState(""); 
+    // // const [font, setfont] = useState(14);
+    // const [editorState, setEditorState] = useState({
+    //     value: languagePlaceHolder["javascript"]
+    // }); 
+    // useEffect(() => {
+    //     socket.on('code', (data) => {
+    //         console.log("code in")
+    //         console.log('data', data)
+    //         setEditorState(data)
+    //     })
+    //     setDefaultCode(languagePlaceHolder["javascript"])
+    //     handleLang("javascript")
+    // }, [])
+    // // const [splitSize, setSplitSize] = useState(500);
     
-    useEffect(() => {
-        socket.on('code', (data) => {
-            console.log("code in")
+    // // const [submitting, setSubmitting] = useState(false);
+    // // const {courseId, problemId, submitDeadline, isAdmin} = props;
+    // console.log("def", defaultCode)
+    // console.log("edit", editorState)
+    // function onEditorBlur(event, editor) {
+    //     console.log(editor)
+    //     if (editor) {
+    //         setEditorState({...editorState, value: editor.lines[0]});
+    //         handleCode()
+    //     }
+    // }
 
-        })
-    }, [])
-    const [splitSize, setSplitSize] = useState(500);
-    const [editorState, setEditorState] = useState({
-        mode: "javascript",
-        fontSize: 14,
-        theme: "xcode",
-        value: languagePlaceHolder["javascript"]
-    }); 
-    function onEditorBlur(event, editor) {
-        if(editor)
-            setEditorState({...editorState, value: editor.getValue()});
-            socket.emit('code', 'hello')
-    }
-    function handleEditorStateChange(newState){
-        if(newState.mode){
-            if(newState.mode == "c++")
-                newState.mode = "c_cpp";
-            newState.value = languagePlaceHolder[newState.mode];
-        }
-        setEditorState({...editorState, ...newState});
-    }
-    function handleSplitSizeChange(size){
-        setSplitSize(size);
-    }
+    // const handleCode = () => {
+    //     socket.emit('code', editorState)
+    // }
+    // // function handleRunCode(){
+    // //     const token = localStorage.getItem('token');
+    // //     setSubmitting(true);
+    // //     axios({
+    // //         url: `${COURSE_URL}/${courseId}/problems/${problemId}/submissions/test`,
+    // //         method: "post",
+    // //         headers: {
+    // //             'x-auth-token': token
+    // //         },
+    // //         data: {
+    // //             source_code: editorState.value,
+    // //             language_id: languageMap[editorState.mode],
+    // //         }
+    // //     }).then(res => {
+    // //         let testcaseResults = res.data.testcase_results;
+    // //         let newSubmissionError = {};
+    // //         let newTestCasesState = testcases.map(testcase => {
+    // //             let updatedTestCase = testcaseResults.find(e => e.testcase_id == testcase._id);
+    // //             if(updatedTestCase){
+    // //                 let {result, stdout} = updatedTestCase;
+    // //                 if(!result){
+    // //                     newSubmissionError.wrong_answer = true;
+    // //                 }
+    // //                 return {...testcase, result, stdout};
+    // //             }
+    // //             return testcase;
+    // //         })
+    // //         setSubmitting(false);
+    // //         setConsoleExpanded(true);
+    // //         setTestcases(newTestCasesState);
+    // //         setSubmissionError(newSubmissionError);
+    // //         setIsCodeRunOrSubmitted(true);
+    // //     }).catch(error => {
+    // //         let newTestcases = testcases.map(e => {return {...e, stdout: "", result: false}});
+    // //         setSubmissionError(error.response.data);
+    // //         setTestcases(newTestcases);
+    // //         setConsoleExpanded(true);
+    // //         setSubmitting(false);
+    // //         setIsCodeRunOr Submitted(true);
+    // //     })
+    // // }
+    // function handleLang(e){
+    //     console.log("lang", e)
+    //     setLang(e)
+    //     setEditorState({
+    //         value: languagePlaceHolder[e]
+    //     })
+    // }
+    // // function handleSplitSizeChange(size){
+    // //     setSplitSize(size);
+    // // }
     return (
-        <>
-        <Grid container>
-    <FormControl className={classes.formControl}>
-        <Select
-          labelId="language"
-          id="language-select"
-          value={editorState.mode}
-          onChange={(event) => handleEditorStateChange({mode: event.target.value})}
-        >
-          <MenuItem value={"javascript"}>javascript</MenuItem>
-          <MenuItem value={"c_cpp"}>c++</MenuItem>
-          <MenuItem value={"python"}>python 3</MenuItem>
-        </Select>
-    </FormControl>
-    <FormControl className={classes.formControl}>
-        <Select
-          labelId="theme"
-          id="theme-select"
-          value={editorState.theme}
-          onChange={(event) => handleEditorStateChange({theme: event.target.value})}
-        >
-          <MenuItem value={"xcode"}>xcode</MenuItem>
-          <MenuItem value={"github"}>github</MenuItem>
-          <MenuItem value={"twilight"}>twilight</MenuItem>
-          <MenuItem value={"monokai"}>monokai</MenuItem>
-        </Select>
-    </FormControl>
-                <AceEditor 
-                    {...editorState}
-                    name="editor"
-                    onBlur={onEditorBlur}
-                    showPrintMargin={true}
-                    showGutter={true}
-                    highlightActiveLine={true}
-                    setOptions={{
-                        enableBasicAutocompletion: false,
-                        enableLiveAutocompletion: false,
-                        showLineNumbers: true,
-                        enableSnippets: true,
-                        tabSize: 2,
-                    }} 
-                    editorProps={{ $blockScrolling: true }}
-                    height='calc(35vh)'
-                    width="100%">
-                </AceEditor>
-                </Grid>
-                </>
+    //     <>
+    //     <Grid container>
+    // <FormControl className={classes.formControl}>
+    //     <Select
+    //       labelId="language"
+    //       id="language-select"
+    //       value={lang}
+    //       onChange={(event) => handleLang(event.target.value)}
+    //     >
+    //       <MenuItem value={"javascript"}>javascript</MenuItem>
+    //       <MenuItem value={"c_cpp"}>c++</MenuItem>
+    //       <MenuItem value={"python"}>python 3</MenuItem>
+    //     </Select>
+    // </FormControl>
+    // <FormControl className={classes.formControl}>
+    //     <Select
+    //       labelId="theme"
+    //       id="theme-select"
+    //       value={theme}
+    //       onChange={(event) => setTheme(event.target.value)}
+    //     >
+    //       <MenuItem value={"xcode"}>xcode</MenuItem>
+    //       <MenuItem value={"github"}>github</MenuItem>
+    //       <MenuItem value={"twilight"}>twilight</MenuItem>
+    //       <MenuItem value={"monokai"}>monokai</MenuItem>
+    //     </Select>
+    // </FormControl>
+    // <AceEditor 
+    //     mode={lang}
+    //     theme={theme}
+    //     name="editor"
+    //     value={defaultCode}
+    //     onChange={(value, stat) => {
+    //         setEditorState(value)
+    //         console.log("onchange", value, stat)
+    //     }}
+    //     showPrintMargin={true}
+    //     showGutter={true}
+    //     highlightActiveLine={true}
+    //     setOptions={{
+    //         enableBasicAutocompletion: false,
+    //         enableLiveAutocompletion: false,
+    //         showLineNumbers: true,
+    //         enableSnippets: true,
+    //         tabSize: 2,
+    //     }} 
+    //     editorProps={{ $blockScrolling: true }}
+    //     height='calc(35vh)'
+    //     width="100%">
+    // </AceEditor>
+    // {/* <Button variant="contained" style={{marginRight: 10}} onClick={handleRunCode}>
+    //             Run code
+    //         </Button> */}
+    // </Grid>
+    // </>
     // <div class="se-widget" data-widget="kINjZ0td3N"></div>
-    // <div className="se-widget" data-widget="ssa0qsO5yn"></div>
+    <div className="se-widget" data-widget="ssa0qsO5yn"></div>
     )
 }
 

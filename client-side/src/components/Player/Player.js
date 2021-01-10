@@ -32,7 +32,7 @@ const Player = () => {
             controls={true}
             url={ url + '?t=' + parseInt(data.time)}
             width='100%'
-            height='100%'
+            height='080%'
             onPlay={setPlay}
             onPause={setPause}
             playing={data.play}
