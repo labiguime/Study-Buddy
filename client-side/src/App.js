@@ -58,6 +58,8 @@ function App() {
 
   const [URL, setURL] = useState()
 
+  console.log(URL)
+
   return (
 
     <div className="App">
