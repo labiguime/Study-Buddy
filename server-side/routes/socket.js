@@ -5,6 +5,9 @@ exports = module.exports = (io) => {
 		socket.on('disconnect', () => {
 			console.log(socket.id+ " has left the server.");
 		});
-		//next();
+		socket.on('video', (data) => {
+			console.log(data)
+			socket.emit("hello", "world");
+		});
 	});
 };
