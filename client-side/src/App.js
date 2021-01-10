@@ -1,3 +1,4 @@
+import './App.css'
 import Navbar from './components/Navbar';
 import WhiteBoard from './components/WhiteBoard';
 import IDE from './components/IDE';
@@ -13,15 +14,22 @@ function App() {
       <Navbar/>
       <header className="App-header"> 
       <Grid container>
-          <Grid item xs='9'>
-            <ReactPlayer
-              url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
-            />
+          <Grid item xs='7'>
+            <div className='player-wrapper'>
+              <ReactPlayer
+                className='react-player'
+                controls='true'
+                url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
+                width='100%'
+                height='90%'
+              />
+            </div>
           </Grid>
-          <Grid item xs='3'>
+          <Grid item xs='4'>
             Chat
           </Grid>
       </Grid>
+
       <Grid container>
           <Grid item xs='6'>
             <WhiteBoard/>
@@ -30,10 +38,6 @@ function App() {
             <IDE/>
           </Grid>
       </Grid>
-      
-      {/* <DrawingBoard
-        userId="user1" // identify for different players.
-      /> */}
       </header>
     </div>
   );
