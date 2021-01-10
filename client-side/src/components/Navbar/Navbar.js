@@ -16,6 +16,15 @@ const useStyles = makeStyles(theme => ({
         backgroundColor:  "white",
         //backgroundColor:  "#ffdd00",
     },
+    title: {
+        display: 'flex',
+        position: 'absolute',
+        top: '50%',
+        'transform': `translate(0%, -50%)`,
+    },
+    videoURL: {
+        margin: 'auto'
+    },
     box: {
         height: 35,
         width: 250,
@@ -86,13 +95,13 @@ const Navbar = () => {
         <AppBar className={classes.root} position="sticky" color='transparent'>
             <Toolbar>                    
                 <Grid container>
-                    <div className={classes.title}>
-                        <a className={classes.link} href="">
-                            <Typography  className={classes.name} variant="h5">Study</Typography>
-                        </a>        
-                    </div>
                     <Grid item>
-                        <TextField className={classes.videoURL} color="primary" variant="filled">Video URL</TextField>
+                    <div className={classes.title}>
+                            <Typography  className={classes.name} variant="h5">Study</Typography>
+                    </div>
+                    </Grid>
+                    <Grid item>
+                            <TextField className={classes.videoURL} color="primary" variant="filled">Video URL</TextField>
                     </Grid>
                 </Grid>
                 <Grid className={classes.nav} container>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
 import DrawingBoard from 'react-drawing-board';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,12 +11,14 @@ const useStyles = makeStyles(theme => ({
     grid: {
         backgroundColor: 'grey',
         padding: '8px',
+        justifyContent: 'center',
     }
 }))
 
 const WhiteBoard = () => {
-
     const classes = useStyles();
+    const [operations, setOperations] = useState([])
+    console.log("operations", operations)
     return (
         <>
         <Grid className={classes.grid} container>
@@ -24,8 +26,14 @@ const WhiteBoard = () => {
             <div>
                 <DrawingBoard
                     userId="User"
+                    operations={operations}
                     className={classes.draw}
-                    style={{width: '700px', height: '500px'}}
+                    onChange={(newOperation, afterOperation) => {
+                        console.log("new", newOperation)
+                        console.log("after", afterOperation)
+                        setOperations(afterOperation)
+                    }}
+                    style={{width: '800px', height: '500px'}}
                 />
             </div>
         </Grid>
