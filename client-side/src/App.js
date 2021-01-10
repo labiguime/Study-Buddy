@@ -61,7 +61,7 @@ const useStyles = makeStyles(theme => ({
       marginTop: '8px',
       marginBottom: '8px',
       display: 'flex',
-      width: '600px',
+      width: '400px',
       height: '40px',
       borderRadius: '32px'
   },
