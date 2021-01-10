@@ -12,8 +12,8 @@ function App() {
   return (
     <div className="App">
       <Navbar/>
-      <header className="App-header"> 
-      <Grid container>
+      <header className="App-header content"> 
+      <Grid container className='margin-top '>
           <Grid item xs='7'>
             <div className='player-wrapper'>
               <ReactPlayer
@@ -21,7 +21,7 @@ function App() {
                 controls='true'
                 url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
                 width='100%'
-                height='90%'
+                height='100%'
               />
             </div>
           </Grid>
