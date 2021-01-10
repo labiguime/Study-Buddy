@@ -12,5 +12,10 @@ exports = module.exports = (io) => {
 			console.log(data)
 			socket.broadcast.emit('video', data)
 		});
+
+		socket.on('chat', (data) => {
+			//console.log('data)
+			socket.broadcast.emit("chat", data.message);
+		});
 	});
 };
