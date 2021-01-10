@@ -22,5 +22,10 @@ exports = module.exports = (io) => {
 			//console.log('data)
 			socket.broadcast.emit("chat", data.message);
 		});
+
+		socket.on('url', (data) => {
+			console.log(data)
+			socket.broadcast.emit("url", data.url);
+		});
 	});
 };
