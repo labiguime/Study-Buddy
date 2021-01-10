@@ -20,24 +20,18 @@ function App() {
   socket.on('hello', data => {
     console.log(data)
   })
-  
+  console.log("HELLO")
 
   return (
     <div className="App">
       <Navbar/>
       <header className="space-top"> 
       <Grid container>
-          <Grid item xs={1}>
-            rer
-          </Grid>
           <Grid item xs={6}>
             <Player />
           </Grid>
           <Grid item xs={4}>
             Chat
-          </Grid>
-          <Grid item xs={1}>
-            rer
           </Grid>
       </Grid>
 

@@ -17,23 +17,27 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const WhiteBoard = () => {
+    const [operations, setOperations] = useState([])
+    console.log("RENDER")
     useEffect(() => {
         socket.on('drawing', (data) => {
+            console.log("in")
             onDrawing(data)
         })
-    })
+    }, [])
     const onDrawing = (newOperation) => {
-        console.log("ondrawing", newOperation)
-        setOperations([...operations, newOperation])
+        setOperations((oldState) => {
+            const newState = [...oldState];
+            newState.push(newOperation)
+            return newState
+        })
     }
     const handleDrawing = (newOperation) => {
-        socket.emit('drawing', 
+        socket.emit('drawing',
             newOperation
         )
     }
     const classes = useStyles();
-    const [operations, setOperations] = useState([])
-    console.log("operations", operations)
     return (
         <>
         <Grid className={classes.grid} container>
@@ -42,8 +46,6 @@ const WhiteBoard = () => {
                 operations={operations}
                 className={classes.draw}
                 onChange={(newOperation, afterOperation) => {
-                    console.log("new", newOperation)
-                    console.log("after", afterOperation)
                     handleDrawing(newOperation)
                     setOperations(afterOperation)
                 }}
@@ -55,3 +57,14 @@ const WhiteBoard = () => {
 }
 
 export default WhiteBoard;
+// const throttle = (callback, delay) => {
+//     let prev = new Date().getTime();
+//     return function () {
+//         const time = new Date.getTime();
+
+//         if ((time - prev) >= delay) {
+//             prev = time;
+//             callback.apply(null, arguments);
+//         }
+//     }
+// }
