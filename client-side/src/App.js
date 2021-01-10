@@ -102,8 +102,8 @@ const useStyles = makeStyles(theme => ({
     border:'#96F3C5 solid 2px', 
     borderRadius: '5px', 
     marginRight:'32px', 
-    overflow:'hidden', 
-    height: '58vh', 
+    overflow: 'hidden', 
+    minHeight: '40vh',
     gridTemplateRows: 'min-content auto min-content', 
     [theme.breakpoints.down('lg')]: {
       height: '40vh'
