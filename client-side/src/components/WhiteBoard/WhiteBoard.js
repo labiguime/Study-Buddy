@@ -22,8 +22,6 @@ const WhiteBoard = () => {
     return (
         <>
         <Grid className={classes.grid} container>
-            
-            <div>
                 <DrawingBoard
                     userId="User"
                     operations={operations}
@@ -33,9 +31,8 @@ const WhiteBoard = () => {
                         console.log("after", afterOperation)
                         setOperations(afterOperation)
                     }}
-                    style={{width: '800px', height: '500px'}}
+                    style={{width: '100%', height: '100%'}}
                 />
-            </div>
         </Grid>
         </>
     )

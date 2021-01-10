@@ -2,8 +2,12 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles } from '@material-ui/core/styles';
+import InputBase from '@material-ui/core/InputBase';
+import IconButton from '@material-ui/core/IconButton';
+import PlayArrowIcon from '@material-ui/icons/PlayArrowOutlined';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
@@ -13,8 +17,17 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({    
     root: {
-        backgroundColor:  "white",
+        backgroundColor:  "#96F3C5",
         //backgroundColor:  "#ffdd00",
+    },
+    paper: {
+        padding: '2px 4px',
+        marginTop: '8px',
+        marginBottom: '8px',
+        display: 'flex',
+        width: '600px',
+        height: '40px',
+        borderRadius: '32px'
     },
     title: {
         display: 'flex',
@@ -23,7 +36,14 @@ const useStyles = makeStyles(theme => ({
         'transform': `translate(0%, -50%)`,
     },
     videoURL: {
-        margin: 'auto'
+        marginLeft: "16px",
+        width: 500
+    },
+    videoURLGrid: {
+        display: 'flex',
+        flex: 'auto',
+        justifyContent: 'center',
+        marginRight: '64px'
     },
     box: {
         height: 35,
@@ -100,8 +120,13 @@ const Navbar = () => {
                             <Typography  className={classes.name} variant="h5">Study</Typography>
                     </div>
                     </Grid>
-                    <Grid item>
-                            <TextField className={classes.videoURL} color="primary" variant="filled">Video URL</TextField>
+                    <Grid className={classes.videoURLGrid} item>
+                        <Paper component="form" className={classes.paper}>
+                            <InputBase className={classes.videoURL} placeholder="Enter a Youtube Link">Video URL</InputBase>
+                            <IconButton type="submit" className={classes.iconButton} aria-label="search">
+                                <PlayArrowIcon />
+                            </IconButton>
+                        </Paper>
                     </Grid>
                 </Grid>
                 <Grid className={classes.nav} container>
