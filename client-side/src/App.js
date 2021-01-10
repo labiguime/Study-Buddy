@@ -8,22 +8,36 @@ import Grid from '@material-ui/core/Grid'
 
 const io = require('socket.io-client')
 const socket = io.connect('http://localhost:3000')
+
 function App() {
 
   useEffect(() => {
-    console.log('whats going on')
+    socket.emit('video', {
+      leo : 'bitch'
+    })
   }, [])
+  
+  socket.on('hello', data => {
+    console.log(data)
+  })
+  
 
   return (
     <div className="App">
       <Navbar/>
-      <header className="space-top content"> 
-      <Grid container className='margin-top '>
-          <Grid item xs={8}>
+      <header className="space-top"> 
+      <Grid container>
+          <Grid item xs={1}>
+            rer
+          </Grid>
+          <Grid item xs={6}>
             <Player />
           </Grid>
           <Grid item xs={4}>
             Chat
+          </Grid>
+          <Grid item xs={1}>
+            rer
           </Grid>
       </Grid>
 

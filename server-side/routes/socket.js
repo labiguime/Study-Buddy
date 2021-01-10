@@ -8,6 +8,10 @@ exports = module.exports = (io) => {
 		//next();
 		socket.on('drawing', (data) => socket.broadcast.emit('drawing', data))
 		
+		socket.on('video', (data) => {
+			console.log(data)
+			socket.emit("hello", "world");
+		});
 	});
 
 
