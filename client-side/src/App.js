@@ -23,12 +23,7 @@ import { socket } from './shared/constants';
 function App() {
 
   const [attr, setAttr] = useState({
-    messages: [
-      {
-        text: 'First message',
-        direction: 'outgoing',
-      },
-    ]
+    messages: [ ]
   });
 
   const handleMessageSent = (value) => {
@@ -53,10 +48,6 @@ function App() {
         direction: 'incoming'
       })
     });
-  })
-
-  socket.on('hello', data => {
-    console.log(data)
   })
   
   return (
