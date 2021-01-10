@@ -6,5 +6,9 @@ exports = module.exports = (io) => {
 			console.log(socket.id+ " has left the server.");
 		});
 		//next();
+		socket.on('drawing', (data) => socket.broadcast.emit('drawing', data))
+		
 	});
+
+
 };
