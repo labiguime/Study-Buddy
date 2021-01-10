@@ -71,9 +71,6 @@ function App() {
       <Navbar/>
       <header className="space-top"> 
       <Grid container>
-          <Grid item xs={1}>
-            rer
-          </Grid>
           <Grid item xs={6}>
             <Player />
           </Grid>
@@ -95,9 +92,6 @@ function App() {
                 <MessageInput placeholder="Type message here" attachButton={false} onSend={handleMessageSent}/>
               </ChatContainer>
             </MainContainer>
-          </Grid>
-          <Grid item xs={1}>
-            rer
           </Grid>
       </Grid>
 
