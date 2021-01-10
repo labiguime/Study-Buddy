@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import ReactPlayer from 'react-player';
-const io = require('socket.io-client')
-const socket = io.connect('http://localhost:3000')
+import { socket } from '../../shared/constants';
 
 const url = 'www.youtube.com/watch?v=ysz5S6PUM-U'
 const Player = () => {
