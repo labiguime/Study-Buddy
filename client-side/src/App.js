@@ -24,6 +24,8 @@ import Paper from '@material-ui/core/Paper';
 import MWLogo from './assets/StudyBuddy2.png';
 import Brightness4OutlinedIcon from '@material-ui/icons/Brightness4Outlined';
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import ShareIcon from '@material-ui/icons/Share';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import {
     orange,
     lightBlue,
@@ -59,7 +61,7 @@ const useStyles = makeStyles(theme => ({
       marginTop: '8px',
       marginBottom: '8px',
       display: 'flex',
-      width: '600px',
+      width: '400px',
       height: '40px',
       borderRadius: '32px'
   },
@@ -82,7 +84,7 @@ const useStyles = makeStyles(theme => ({
   },
   videoURL: {
       marginLeft: "16px",
-      width: 500
+      width: 400
   },
   videoURLGrid: {
       display: 'flex',
@@ -102,8 +104,8 @@ const useStyles = makeStyles(theme => ({
     border:'#96F3C5 solid 2px', 
     borderRadius: '5px', 
     marginRight:'32px', 
-    overflow:'hidden', 
-    height: '58vh', 
+    overflow: 'hidden', 
+    minHeight: '40vh',
     gridTemplateRows: 'min-content auto min-content', 
     [theme.breakpoints.down('lg')]: {
       height: '40vh'
@@ -224,10 +226,15 @@ function App() {
         text: data,
         direction: 'incoming'
       })
-    });
+    }); 
   })
 
-  const [URL, setURL] = useState()  
+  socket.on('url', data => {
+    console.log(data)
+    setURL(data)
+  })
+
+  const [URL, setURL] = useState('')  
   
   //Intro
   const [open, setOpen] = useState(true);
@@ -257,6 +264,7 @@ function App() {
     }; 
     const handlePress = (event) => {
       setURL(event.target.value)
+      socket.emit('url', {url: event.target.value})
    }
 
 
@@ -290,14 +298,14 @@ function App() {
                             <ListItem>
                                 <li>
                                   <Paper className={classes.paperMini}>
-                                  <Typography className={classes.navBtns}>Share</Typography>
+                                  <Typography className={classes.navBtns}><ShareIcon/></Typography>
                                   </Paper>
                                 </li>
                             </ListItem>
                             <ListItem>
                               <li>
                                 <Paper className={classes.paperMini}>
-                                  <Typography className={classes.navBtns}>User</Typography>
+                                  <Typography className={classes.navBtns}><AccountCircleIcon /></Typography>
                                 </Paper>
                               </li>
                             </ListItem>
