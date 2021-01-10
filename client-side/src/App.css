@@ -9,15 +9,6 @@
   left: 0;
 }
 
-.content {
-  max-width: 92%;
-  margin: auto;
-}
-
 .space-top {
   margin-top: 40px;
-}
-
-.space-left{
-  margin-left: 40px;
 }
