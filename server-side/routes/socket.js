@@ -10,7 +10,7 @@ exports = module.exports = (io) => {
 
 		socket.on('code', (data) => {
 			console.log(data)
-			socket.emit('code', data)
+			socket.broadcast.emit('code', data)
 		})
 		
 		socket.on('video', (data) => {
