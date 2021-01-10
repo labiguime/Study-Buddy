@@ -16,12 +16,11 @@ function App() {
       leo : 'bitch'
     })
   }, [])
-  
+
   socket.on('hello', data => {
     console.log(data)
   })
   
-
   return (
     <div className="App">
       <Navbar/>
@@ -42,11 +41,17 @@ function App() {
       </Grid>
 
       <Grid container className='space-top'>
-          <Grid item xs={6}>
+          <Grid item xs={1}>
+
+          </Grid>
+          <Grid item xs={5}>
             <WhiteBoard/>
           </Grid>
-          <Grid item xs={6} >
+          <Grid item xs={5} >
             <IDE/>
+          </Grid>
+          <Grid item xs={1} >
+            
           </Grid>
       </Grid>
       </header>
