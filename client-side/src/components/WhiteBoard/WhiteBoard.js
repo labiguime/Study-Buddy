@@ -22,10 +22,12 @@ const WhiteBoard = () => {
             onDrawing(data)
         })
     })
+
     const onDrawing = (newOperation) => {
         console.log("ondrawing", newOperation)
         setOperations([...operations, newOperation])
     }
+    
     const handleDrawing = (newOperation) => {
         socket.emit('drawing', 
             newOperation
