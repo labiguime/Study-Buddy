@@ -20,14 +20,11 @@ const WhiteBoard = () => {
     return (
         <>
         <Grid className={classes.grid} container>
-            
-            <div>
                 <DrawingBoard
                     userId="User"
                     className={classes.draw}
-                    style={{width: '700px', height: '500px'}}
+                    style={{width: '100%', height: '100%'}}
                 />
-            </div>
         </Grid>
         </>
     )
