@@ -1,29 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/Navbar';
+import WhiteBoard from './components/WhiteBoard';
 import DrawingBoard from 'react-drawing-board';
+import {SketchField, Tools} from 'react-sketch2';
+import Grid from '@material-ui/core/Grid';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
       <Navbar/>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <DrawingBoard
-          userId="user1" // identify for different players.
-        />
-      </header>
+
+        <WhiteBoard />
     </div>
   );
 }
