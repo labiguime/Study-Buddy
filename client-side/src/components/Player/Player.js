@@ -2,8 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import ReactPlayer from 'react-player';
 import { socket } from '../../shared/constants';
 
-const url = 'www.youtube.com/watch?v=ysz5S6PUM-U'
-const Player = () => {
+const Player = ({youtube_url = 'https://www.youtube.com/watch?v=pKO9UjSeLew'}) => {
+
     const ref = useRef(null)
     const [data, setData] = useState({play: false, time: 0, received: false})
 
@@ -30,7 +30,7 @@ const Player = () => {
             ref={ref}
             className='react-player'
             controls={true}
-            url={ url + '?t=' + parseInt(data.time)}
+            url={ youtube_url + '?t=' + parseInt(data.time)}
             width='100%'
             height='100%'
             onPlay={setPlay}

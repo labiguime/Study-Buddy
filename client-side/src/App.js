@@ -3,7 +3,7 @@ import Navbar from './components/Navbar';
 import WhiteBoard from './components/WhiteBoard';
 import IDE from './components/IDE';
 import Player from './components/Player';
-import {useEffect, useState} from 'react'
+import {React, useEffect, useState} from 'react'
 import Grid from '@material-ui/core/Grid'
 
 import styles from "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
@@ -19,6 +19,12 @@ import {
 
 import { socket } from './shared/constants';
 
+
+// export const URLcontext = React.createContext();
+
+// const initialState = {
+//   url : 'https://www.youtube.com/watch?v=pKO9UjSeLew'
+// }
 
 function App() {
 
@@ -49,10 +55,13 @@ function App() {
       })
     });
   })
-  
+
+  const [URL, setURL] = useState()
+
   return (
+
     <div className="App">
-      <Navbar/>
+      <Navbar setURL={setURL}/>
       <header className="space-top"> 
 
       <Grid container>
@@ -60,7 +69,7 @@ function App() {
         <Grid item xs={1}>
         </Grid>
           <Grid item xs={7}>
-            <Player />
+            <Player youtube_url={URL? URL : 'https://www.youtube.com/watch?v=pKO9UjSeLew'}/> 
           </Grid>
           <Grid item xs={3}>
             <MainContainer>
