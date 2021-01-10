@@ -2,8 +2,7 @@ import React, {useEffect, useState} from 'react';
 import DrawingBoard from 'react-drawing-board';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-const io = require('socket.io-client')
-const socket = io.connect('http://localhost:3000')
+import { socket } from '../../shared/constants';
 
 const useStyles = makeStyles(theme => ({ 
     draw: {

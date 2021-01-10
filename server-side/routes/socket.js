@@ -7,6 +7,11 @@ exports = module.exports = (io) => {
 		});
 		//next();
 		socket.on('drawing', (data) => socket.broadcast.emit('drawing', data))
+
+		socket.on('code', (data) => {
+			console.log(data)
+			socket.emit('code', data)
+		})
 		
 		socket.on('video', (data) => {
 			console.log(data)
