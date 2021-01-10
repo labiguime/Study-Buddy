@@ -6,7 +6,6 @@ import Player from './components/Player';
 import {useEffect, useState} from 'react'
 import Grid from '@material-ui/core/Grid'
 
-
 import styles from "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 
 import {
@@ -18,8 +17,8 @@ import {
   Avatar
 } from "@chatscope/chat-ui-kit-react";
 
-const io = require('socket.io-client')
-const socket = io.connect('http://localhost:3000')
+import { socket } from './shared/constants';
+
 
 function App() {
 
@@ -64,11 +63,15 @@ function App() {
     <div className="App">
       <Navbar/>
       <header className="space-top"> 
+
       <Grid container>
-          <Grid item xs={6}>
+        
+        <Grid item xs={1}>
+        </Grid>
+          <Grid item xs={7}>
             <Player />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={3}>
             <MainContainer>
               <ChatContainer>
                 <MessageList>
@@ -86,6 +89,9 @@ function App() {
                 <MessageInput placeholder="Type message here" attachButton={false} onSend={handleMessageSent}/>
               </ChatContainer>
             </MainContainer>
+          </Grid>
+          
+          <Grid item xs={1}>
           </Grid>
       </Grid>
 

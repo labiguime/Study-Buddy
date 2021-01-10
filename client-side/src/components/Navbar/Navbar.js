@@ -10,6 +10,7 @@ import ListItem from '@material-ui/core/ListItem';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import {socket} from '../../shared/constants';
 
 const useStyles = makeStyles(theme => ({    
     root: {
