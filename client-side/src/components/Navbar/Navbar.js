@@ -109,8 +109,13 @@ const useStyles = makeStyles(theme => ({
     },
   }));
   
-const Navbar = () => {
+const Navbar = ({setURL}) => {
+
     const classes = useStyles();
+
+    const handlePress = (event) => {
+       setURL(event.target.value)
+    }
 
     return (
         <>
@@ -124,8 +129,8 @@ const Navbar = () => {
                     </Grid>
                     <Grid className={classes.videoURLGrid} item>
                         <Paper component="form" className={classes.paper}>
-                            <InputBase className={classes.videoURL} placeholder="Enter a Youtube Link">Video URL</InputBase>
-                            <IconButton type="submit" className={classes.iconButton} aria-label="search">
+                            <InputBase className={classes.videoURL} placeholder="Enter a Youtube Link" onBlur={handlePress}>Video URL</InputBase>
+                            <IconButton className={classes.iconButton} aria-label="search">
                                 <PlayArrowIcon />
                             </IconButton>
                         </Paper>
