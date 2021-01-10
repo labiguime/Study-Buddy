@@ -12,6 +12,11 @@ exports = module.exports = (io) => {
 			console.log(data)
 			socket.emit("hello", "world");
 		});
+
+		socket.on('chat', (data) => {
+			//console.log('data)
+			socket.broadcast.emit("chat", data.message);
+		});
 	});
 
 
