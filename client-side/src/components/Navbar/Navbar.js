@@ -11,9 +11,6 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Grid from '@material-ui/core/Grid'
-import Divider from '@material-ui/core/Divider'
-
-import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({    
     root: {
