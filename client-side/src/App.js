@@ -1,17 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
 import Navbar from './components/Navbar';
 import WhiteBoard from './components/WhiteBoard';
+import IDE from './components/IDE';
 import DrawingBoard from 'react-drawing-board';
-import {SketchField, Tools} from 'react-sketch2';
-import Grid from '@material-ui/core/Grid';
+import ReactPlayer from 'react-player';
+import { useState } from 'react';
+
+import Grid from '@material-ui/core/Grid'
 
 function App() {
   return (
     <div className="App">
       <Navbar/>
-
-        <WhiteBoard />
+      <header className="App-header"> 
+      <Grid container>
+          <Grid item xs='9'>
+            <ReactPlayer
+              url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
+            />
+          </Grid>
+          <Grid item xs='3'>
+            Chat
+          </Grid>
+      </Grid>
+      <Grid container>
+          <Grid item xs='6'>
+            <WhiteBoard/>
+          </Grid>
+          <Grid item xs='6'>
+            <IDE/>
+          </Grid>
+      </Grid>
+      
+      {/* <DrawingBoard
+        userId="user1" // identify for different players.
+      /> */}
+      </header>
     </div>
   );
 }
