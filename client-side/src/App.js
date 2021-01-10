@@ -1,10 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar';
+import DrawingBoard from 'react-drawing-board';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+      <Navbar/>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -17,6 +20,9 @@ function App() {
         >
           Learn React
         </a>
+        <DrawingBoard
+          userId="user1" // identify for different players.
+        />
       </header>
     </div>
   );
