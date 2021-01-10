@@ -72,7 +72,10 @@ function App() {
             <Player youtube_url={URL? URL : 'https://www.youtube.com/watch?v=pKO9UjSeLew'}/> 
           </Grid>
           <Grid item xs={3}>
-            <MainContainer>
+            <div style={{
+                height: "500px",
+                overflow: "hidden"
+              }}>
               <ChatContainer>
                 <MessageList>
                 {attr.messages.map((m, index) => (
@@ -88,7 +91,7 @@ function App() {
                 </MessageList>
                 <MessageInput placeholder="Type message here" attachButton={false} onSend={handleMessageSent}/>
               </ChatContainer>
-            </MainContainer>
+            </div>
           </Grid>
           
           <Grid item xs={1}>
