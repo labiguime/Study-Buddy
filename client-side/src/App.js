@@ -226,10 +226,15 @@ function App() {
         text: data,
         direction: 'incoming'
       })
-    });
+    }); 
   })
 
-  const [URL, setURL] = useState()  
+  socket.on('url', data => {
+    console.log(data)
+    setURL(data)
+  })
+
+  const [URL, setURL] = useState('')  
   
   //Intro
   const [open, setOpen] = useState(true);
@@ -259,6 +264,7 @@ function App() {
     }; 
     const handlePress = (event) => {
       setURL(event.target.value)
+      socket.emit('url', {url: event.target.value})
    }
 
 
