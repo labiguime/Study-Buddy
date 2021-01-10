@@ -19,6 +19,7 @@ import {
     deepPurple,
     deepOrange
   } from "@material-ui/core/colors";
+import ShareIcon from '@material-ui/icons/Share';
 
 const useStyles = makeStyles(theme => ({    
     root: {
