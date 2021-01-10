@@ -22,12 +22,6 @@ import { socket } from './shared/constants';
 
 function App() {
 
-  useEffect(() => {
-    socket.emit('video', {
-      leo : 'bitch'
-    })
-  }, []);
-
   const [attr, setAttr] = useState({
     messages: [
       {
