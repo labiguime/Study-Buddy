@@ -125,7 +125,7 @@ const Navbar = ({setURL}) => {
                 <Grid container>
                     <Grid item>
                     <div className={classes.title}>
-                        <img src={MWLogo} alt="Logo" />
+                        <img src={MWLogo} alt="Logo" Width="100px" />
                     </div>
                     </Grid>
                     <Grid className={classes.videoURLGrid} item>

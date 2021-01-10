@@ -5,23 +5,24 @@ import { socket } from '../../shared/constants';
 const Player = ({youtube_url = 'https://www.youtube.com/watch?v=pKO9UjSeLew'}) => {
 
     const ref = useRef(null)
-    const [data, setData] = useState({play: false, time: 0, received: false})
+    const [data, setData] = useState({play: false, time: 0})
+    const [received, setReceived] = useState(false)
 
     useEffect(() => {
       socket.on('video', (data) => {
-        data = {...data, received: true}
+        data.play ? setReceived(true) : setReceived(false)
         setData(data)
       })
     }, [])
 
     const setPlay = () => {
       setData({...data, play: true})
-      data.received ? setData({...data, received: false}) : socket.emit('video', {play: true, time: ref.current.getCurrentTime()})
+      received ? setReceived(false) : socket.emit('video', {play: true, time: ref.current.getCurrentTime()})
     }
 
     const setPause = () => {
       setData({...data, play: false})
-      data.received ? setData({...data, received: false}) : socket.emit('video', {play: false, time: ref.current.getCurrentTime()})
+      received ? setReceived(false) : socket.emit('video', {play: false, time: ref.current.getCurrentTime()})
     }
 
     return(
