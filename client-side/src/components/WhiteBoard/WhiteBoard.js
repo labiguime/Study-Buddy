@@ -25,6 +25,7 @@ const WhiteBoard = () => {
             onDrawing(data)
         })
     }, [])
+
     const onDrawing = (newOperation) => {
         setOperations((oldState) => {
             const newState = [...oldState];
@@ -32,6 +33,7 @@ const WhiteBoard = () => {
             return newState
         })
     }
+    
     const handleDrawing = (newOperation) => {
         socket.emit('drawing',
             newOperation
