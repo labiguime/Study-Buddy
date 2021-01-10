@@ -63,7 +63,10 @@ function App() {
             <Player />
           </Grid>
           <Grid item xs={3}>
-            <MainContainer>
+            <div style={{
+                height: "500px",
+                overflow: "hidden"
+              }}>
               <ChatContainer>
                 <MessageList>
                 {attr.messages.map((m, index) => (
@@ -79,7 +82,7 @@ function App() {
                 </MessageList>
                 <MessageInput placeholder="Type message here" attachButton={false} onSend={handleMessageSent}/>
               </ChatContainer>
-            </MainContainer>
+            </div>
           </Grid>
           
           <Grid item xs={1}>
