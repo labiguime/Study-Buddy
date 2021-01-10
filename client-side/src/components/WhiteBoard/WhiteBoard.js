@@ -9,7 +9,6 @@ const useStyles = makeStyles(theme => ({
         //backgroundColor:  "#ffdd00",
     },   
     grid: {
-        backgroundColor: 'grey',
         padding: '8px',
         justifyContent: 'center',
     }
