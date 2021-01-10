@@ -33,7 +33,7 @@ const Player = ({youtube_url = 'https://www.youtube.com/watch?v=pKO9UjSeLew'}) =
             controls={true}
             url={ youtube_url + '?t=' + parseInt(data.time)}
             width='100%'
-            height='080%'
+            height='100%'
             onPlay={setPlay}
             onPause={setPause}
             playing={data.play}

@@ -13,6 +13,23 @@ import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import { makeStyles } from '@material-ui/core/styles';
+import InputBase from '@material-ui/core/InputBase';
+import PlayArrowIcon from '@material-ui/icons/PlayArrowOutlined';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Paper from '@material-ui/core/Paper';
+import MWLogo from './assets/StudyBuddy2.png';
+import Brightness4OutlinedIcon from '@material-ui/icons/Brightness4Outlined';
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import {
+    orange,
+    lightBlue,
+    deepPurple,
+    deepOrange
+  } from "@material-ui/core/colors";
 
 import Intro from './components/Intro';
 
@@ -28,6 +45,7 @@ import {
 } from "@chatscope/chat-ui-kit-react";
 
 import { socket } from './shared/constants';
+import { CssBaseline } from '@material-ui/core';
 
 
 // export const URLcontext = React.createContext();
@@ -35,6 +53,117 @@ import { socket } from './shared/constants';
 // const initialState = {
 //   url : 'https://www.youtube.com/watch?v=pKO9UjSeLew'
 // }
+const useStyles = makeStyles(theme => ({    
+  paper: {
+      padding: '2px 4px',
+      marginTop: '8px',
+      marginBottom: '8px',
+      display: 'flex',
+      width: '600px',
+      height: '40px',
+      borderRadius: '32px'
+  },
+  paperMini: {
+      padding: '2px 4px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flex: 1,
+      flexDirection: 'row',
+      width: '100px',
+      height: '40px',
+      borderRadius: '32px'
+  },
+  title: {
+      display: 'flex',
+      position: 'absolute',
+      top: '50%',
+      'transform': `translate(0%, -50%)`,
+  },
+  videoURL: {
+      marginLeft: "16px",
+      width: 500
+  },
+  videoURLGrid: {
+      display: 'flex',
+      flex: 'auto',
+      justifyContent: 'center',
+      marginRight: '64px'
+  },
+  box: {
+      height: 35,
+      width: 250,
+      textAlign: "center",
+      display: "flex",
+    //marginTop: theme.spacing(1),    
+    marginTop: 15,
+  }, 
+  chatGrid: {
+    border:'#96F3C5 solid 2px', 
+    borderRadius: '5px', 
+    marginRight:'32px', 
+    overflow:'hidden', 
+    height: '58vh', 
+    gridTemplateRows: 'min-content auto min-content', 
+    [theme.breakpoints.down('lg')]: {
+      height: '40vh'
+    },
+  },
+  container: {
+      display: "none",
+      [theme.breakpoints.up('md')]: {
+          display: 'flex',
+          position: 'relative', 
+          width: 'auto'
+        },
+    marginLeft: 'auto',
+  },
+  nav: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+        display: 'flex',
+        width: 'auto',
+        justifyContent: 'center'
+      },
+  },
+  name: {      
+      "transition" : "all 0.6s",
+      "font-size" : "26px",
+      "font-family" : "Cairo, sans-serif",
+      "letter-spacing" : "2px",
+      "text-decoration": "none",
+      marginLeft: "30px",
+      marginRight: "30px",
+      opacity : "1.0",
+          "&:hover": {
+              opacity: "0.6",
+              "font-size": "27px"
+        }
+  },
+  link: {
+      "text-decoration": "none",
+  },
+  navBtns: {
+      "transition" : "all 0.6s",
+      "font-size" : "1rem",
+      "font-family" : "Cairo, sans-serif",
+      "letter-spacing" : "2px",
+      "text-decoration": "none",
+      opacity : "1.0",
+      "&:hover": {
+          opacity: "0.6",
+          "font-size": "1.01rem"
+    }
+  },
+  drawerPaper: {
+    width: 250,
+  },
+  chatContainer: {
+    display:'flex',
+    maxHeight: '100%',
+    overflow: 'hidden',
+  }
+}));
 const styles = (theme) => ({
   root: {
     margin: 0,
@@ -105,30 +234,135 @@ function App() {
   
   const handleClose = () => {
     setOpen(false);
-  };
+  };    
+  const classes = useStyles();
+  const [darkState, setDarkState] = useState();
+
+  const palletType = darkState ? "dark" : "light";
+  const mainPrimaryColor = darkState ? orange[500] : '#96F3C5';
+  const mainSecondaryColor = darkState ? deepOrange[900] : deepPurple[500];
+  const darkTheme = createMuiTheme({
+    palette: {
+      type: palletType,
+      primary: {
+        main: mainPrimaryColor
+      },
+      secondary: {
+        main: mainSecondaryColor
+      }
+    }
+  });  
+  const handleThemeChange = () => {
+      setDarkState(!darkState);
+    }; 
+    const handlePress = (event) => {
+      setURL(event.target.value)
+   }
+
 
   console.log(URL)
 
   return (
+  <ThemeProvider theme={darkTheme}>
+    <div className={classes.App}>
+      <CssBaseline/>
+        <AppBar className={classes.root} position="sticky">
+            <Toolbar>                    
+                <Grid container>
+                    <Grid item>
+                    <div className={classes.title}>
+                        <img src={MWLogo} alt="Logo" Width="100px" />
+                    </div>
+                    </Grid>
+                    <Grid className={classes.videoURLGrid} item>
+                        <Paper component="form" className={classes.paper}>
+                            <InputBase className={classes.videoURL} placeholder="Enter a Youtube Link" onBlur={handlePress}>Video URL</InputBase>
+                            <IconButton className={classes.iconButton} aria-label="search">
+                                <PlayArrowIcon />
+                            </IconButton>
+                        </Paper>
+                    </Grid>
+                </Grid>
+                <Grid className={classes.nav} container>
+                    <Grid item>
+                        <List className={classes.container}>                      
+                            
+                            <ListItem>
+                                <li>
+                                  <Paper className={classes.paperMini}>
+                                  <Typography className={classes.navBtns}>Share</Typography>
+                                  </Paper>
+                                </li>
+                            </ListItem>
+                            <ListItem>
+                              <li>
+                                <Paper className={classes.paperMini}>
+                                  <Typography className={classes.navBtns}>User</Typography>
+                                </Paper>
+                              </li>
+                            </ListItem>
+                            <ListItem>
+                                <IconButton onClick={handleThemeChange}>
+                                    <Brightness4OutlinedIcon></Brightness4OutlinedIcon>
+                                </IconButton>
+                            </ListItem>
+                        </List>
+                    </Grid>
+                </Grid>
+               
+                {/* <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                    edge="start"
+                    onClick={handleDrawerToggle}
+                    className={classes.menuButton}
+                >
+                    <MenuIcon />
+                </IconButton> */}
 
-    <div className="App">
-      <Navbar setURL={setURL}/>
+                {/* Mobile Navbar */}
+                {/* <Drawer
+                    variant="temporary"
+                    anchor="right"
+                    open={mobileOpen}
+                    onClose={handleDrawerToggle}
+                    classes={{
+                    paper: classes.drawerPaper,
+                    }}
+                    ModalProps={{
+                    keepMounted: true, // Better open performance on mobile.
+                    }}
+                >
+                    <Paper elevation={0} className={classes.drawerPaper}>
+                    <Button size='small' onClick={handleDrawerToggle} style={{margin: 10}} color="default">
+                        <CloseIcon color='primary'/>
+                    </Button>
+                        
+                    <List>
+                        <Divider />
+                        <ListItem>
+                            <li><a className={classes.navBtns}>Home</a></li>
+                        </ListItem>
+                       
+                    </List>
+                  
+                    </Paper>
+                    
+                </Drawer> */}
+            </Toolbar>
+        </AppBar>
       <header className="space-top"> 
-
-      <Grid container>
+      <main className={classes.content}>
+      <Grid container style={{gridAutoRows: 'auto'}}>
         
         <Grid item xs={1}>
         </Grid>
-          <Grid item xs={7}>
+          <Grid style={{border:'#96F3C5 solid 2px', borderRadius: '5px', marginRight:'32px'}} item xs={7}>
             <Player youtube_url={URL? URL : 'https://www.youtube.com/watch?v=pKO9UjSeLew'}/> 
           </Grid>
-          <Grid item xs={3}>
-            <div style={{
-                height: "500px",
-                overflow: "hidden"
-              }}>
-              <ChatContainer>
-                <MessageList>
+          <Grid className={classes.chatGrid} item xs={3}>
+              <ChatContainer className={classes.chatContainer}>
+                <MessageList style={{overflow:'hidden', height: '100%'}}>
                 {attr.messages.map((m, index) => (
                     <Message model={{
                       message: m.text,
@@ -142,7 +376,6 @@ function App() {
                 </MessageList>
                 <MessageInput placeholder="Type message here" attachButton={false} onSend={handleMessageSent}/>
               </ChatContainer>
-            </div>
           </Grid>
           
           <Grid item xs={1}>
@@ -153,10 +386,10 @@ function App() {
           <Grid item xs={1}>
 
           </Grid>
-          <Grid item xs={5}>
+          <Grid style={{border:'#96F3C5 solid 2px', borderRadius: '5px', marginRight:'32px'}} item xs={5}>
             <WhiteBoard/>
           </Grid>
-          <Grid item xs={5} >
+          <Grid style={{border:'#96F3C5 solid 2px', borderRadius: '5px', marginRight:'32px'}} item xs={5} >
             <IDE/>
           </Grid>
           <Grid item xs={1} >
@@ -175,8 +408,10 @@ function App() {
           </DialogActions>
         </Dialog>
       
+      </main>
       </header>
     </div>
+    </ThemeProvider>
   );
 }
 

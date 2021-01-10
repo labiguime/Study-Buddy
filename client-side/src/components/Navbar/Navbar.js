@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,7 +10,15 @@ import ListItem from '@material-ui/core/ListItem';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import MWLogo from '../../assets/StudyBuddy.png';
+import MWLogo from '../../assets/StudyBuddy2.png';
+import Brightness4OutlinedIcon from '@material-ui/icons/Brightness4Outlined';
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import {
+    orange,
+    lightBlue,
+    deepPurple,
+    deepOrange
+  } from "@material-ui/core/colors";
 
 const useStyles = makeStyles(theme => ({    
     root: {
@@ -113,13 +121,32 @@ const useStyles = makeStyles(theme => ({
 const Navbar = ({setURL}) => {
 
     const classes = useStyles();
+    const [darkState, setDarkState] = useState();
 
-    const handlePress = (event) => {
-       setURL(event.target.value)
-    }
-
+    const palletType = darkState ? "dark" : "light";
+    const mainPrimaryColor = darkState ? orange[500] : lightBlue[500];
+    const mainSecondaryColor = darkState ? deepOrange[900] : deepPurple[500];
+    const darkTheme = createMuiTheme({
+      palette: {
+        type: palletType,
+        primary: {
+          main: mainPrimaryColor
+        },
+        secondary: {
+          main: mainSecondaryColor
+        }
+      }
+    });  
+    const handleThemeChange = () => {
+        setDarkState(!darkState);
+      }; 
+      const handlePress = (event) => {
+        setURL(event.target.value)
+     }
+ 
     return (
         <>
+        <ThemeProvider theme={darkTheme}>
         <AppBar className={classes.root} position="sticky" color='transparent'>
             <Toolbar>                    
                 <Grid container>
@@ -153,6 +180,11 @@ const Navbar = ({setURL}) => {
                             </ListItem>
                             <ListItem>
                                 <li><a className={classes.navBtns}>User</a></li>
+                            </ListItem>
+                            <ListItem>
+                                <IconButton onClick={handleThemeChange}>
+                                    <Brightness4OutlinedIcon></Brightness4OutlinedIcon>
+                                </IconButton>
                             </ListItem>
                         </List>
                     </Grid>
@@ -199,6 +231,7 @@ const Navbar = ({setURL}) => {
                 </Drawer> */}
             </Toolbar>
         </AppBar>
+        </ThemeProvider>
         </>
     )
 }

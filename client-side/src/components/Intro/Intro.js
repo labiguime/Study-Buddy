@@ -56,7 +56,7 @@ const styles = (theme) => ({
             <Typography gutterBottom>
               What do we do? 
               Our platform allows multiple users to enter one room and have access to tools like watching youtube tutorials,
-               brainstorm on a drawable whiteboard, and code in our inbuilt browser IDE ALL IN REAL-TIME
+              brainstorm on a drawable whiteboard, and code in our inbuilt browser IDE ALL IN REAL-TIME
             </Typography>
           </DialogContent>
 
